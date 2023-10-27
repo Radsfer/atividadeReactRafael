@@ -1,95 +1,91 @@
+"use client"
 import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './globals.css'
+import { useState } from 'react'
+import ListaClientes from './componentes/listaClientes'
+import ListaFornecedores from './componentes/listaFornecedores'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+
+// const usuario = {
+//   nome: "Fulana de Tal",
+//   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+//   imageSize: 90
+//}
+
+// const produtos = [
+//   { titulo: "Maçã", id: 1, fruta: true },
+//   { titulo: "Couve", id: 2, fruta: false },
+//   { titulo: "Mamão", id: 3, fruta: true },
+//   { titulo: "Alface", id: 4, fruta: false },
+// ]
+
+// const listaProdutos = produtos.map(
+//   e =>
+//     <li style={{
+//       color: e.fruta ? "red" : "blue"
+//     }} key={e.id}>
+//       {e.titulo}
+//     </li>
+// )
+
+// function MeuBotao() {
+//   return (
+//     <button>Meu Botão Como Componente</button>
+//   )
+// }
+
+
+// function Perfil() {
+//   return (
+//     <>
+//       <h1>{usuario.nome}</h1>
+//       <img
+//         className='avatar'
+//         src={usuario.imageUrl}
+//         alt="Imagem do fulano de tal"
+//         width={usuario.imageSize}
+//       />
+
+
+//     </>
+//   )
+// }
 
 export default function Home() {
+  // var logado = false
+  // var conteudo
+  // if (logado) {
+  //   conteudo = <Perfil />
+  // } else {
+  //   conteudo = <h1>Realize o Login</h1>
+  // }
+  // return (
+  //   <main>
+  //     {logado ? <Perfil /> : <h1>Realize o Login</h1>}
+  //     <div>
+  //       <ListaClientes />
+  //     </div>
+  //   </main>
+  // )
+  // )
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main style={{display:"grid",placeItems:"center", height: '100vh' }}>
+      <div style={{ width: '50%' }}>
+      <Card className="text-center" style={{ backgroundColor: 'lightblue', borderColor: 'blue', color: 'white' }}>
+        <Card.Header style={{ backgroundColor: 'blue', color: 'white' }}>
+          <Card.Title style={{ fontSize: '80px' }}>Fornecedores</Card.Title>
+          </Card.Header>
+        <Card.Body>
+          <div>
+            <ListaFornecedores />
+          </div>
+        </Card.Body>
+        <Card.Footer className="text-muted" style={{ backgroundColor: 'blue', color: 'white' }}></Card.Footer>
+      </Card>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
   )
+
 }
