@@ -4,8 +4,12 @@ import styles from './globals.css'
 import { useState } from 'react'
 import ListaClientes from './componentes/listaClientes'
 import ListaFornecedores from './componentes/listaFornecedores'
+import FormClientes from './componentes/formClientes'
+import FormFornecedores from './componentes/formFornecedores'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
 
 // const usuario = {
 //   nome: "Fulana de Tal",
@@ -52,6 +56,9 @@ import Card from 'react-bootstrap/Card';
 //   )
 // }
 
+
+
+
 export default function Home() {
   // var logado = false
   // var conteudo
@@ -69,23 +76,42 @@ export default function Home() {
   //   </main>
   // )
   // )
+
+  const [secaoAtiva, setSecaoAtiva] = useState('Fornecedores');
+
+  const renderizarSecao = () => {
+    switch (secaoAtiva) {
+      case 'Fornecedores':
+        return <ListaFornecedores />;
+      case 'Clientes':
+        return <ListaClientes />;
+      case 'Cadastrar Cliente':
+        return <FormClientes />;
+      case 'Cadastrar Fornecedor':
+        return <FormFornecedores />;
+      default:
+        return null;
+    }
+  };
   return (
-    <main style={{display:"grid",placeItems:"center", height: '100vh' }}>
-      <div style={{ width: '50%' }}>
-      <Card className="text-center" style={{ backgroundColor: 'lightblue', borderColor: 'blue', color: 'white' }}>
-        <Card.Header style={{ backgroundColor: 'blue', color: 'white' }}>
-          <Card.Title style={{ fontSize: '80px' }}>Fornecedores</Card.Title>
+    <main style={{ display: 'grid', height: '100vh', justifyContent: 'center' }}>
+      {/* Conteúdo principal */}
+      <div style={{ width: '100%', margin: '20px' }}>
+        <Card className="text-center gap-2" style={{ backgroundColor: 'lightblue', borderColor: 'blue', color: 'white' }}>
+          <Card.Header style={{ backgroundColor: 'blue', color: 'white' }}>
+            <Card.Title style={{ fontSize: '80px' }}>{secaoAtiva}</Card.Title>
           </Card.Header>
-        <Card.Body>
-          <div>
-            <ListaFornecedores />
-          </div>
-        </Card.Body>
-        <Card.Footer className="text-muted" style={{ backgroundColor: 'blue', color: 'white' }}></Card.Footer>
-      </Card>
+          <Card.Body>
+            <Button variant="primary" onClick={() => setSecaoAtiva('Fornecedores')}>Listar Fornecedores</Button>{' '}
+            <Button variant="primary" onClick={() => setSecaoAtiva('Clientes')}>Listar Clientes</Button>{' '}
+            <Button variant="primary" onClick={() => setSecaoAtiva('Cadastrar Cliente')}>Cadastrar Cliente</Button>{' '}
+            <Button variant="primary" onClick={() => setSecaoAtiva('Cadastrar Fornecedor')}>Cadastrar Fornecedor</Button>{' '}
+
+            {renderizarSecao()}
+          </Card.Body>
+          <Card.Footer className="text-muted" style={{ backgroundColor: 'blue', color: 'white' }}></Card.Footer>
+        </Card>
       </div>
-
     </main>
-  )
-
+  );
 }
