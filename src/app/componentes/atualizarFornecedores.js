@@ -22,6 +22,12 @@ function AtualizarFornecedores({ idFornecedor, onClose, onAtualizacaoBemSucedida
 
     setShowEmptyFieldsAlert(false);
   }
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevData) => ({ ...prevData, avatar: file }));
+    setShowEmptyFieldsAlert(false);
+  };
+  
 
   function submitFormulario(e) {
     e.preventDefault();
@@ -30,6 +36,7 @@ function AtualizarFornecedores({ idFornecedor, onClose, onAtualizacaoBemSucedida
 
     // Lista dos campos que podem ser editados
     const editableFields = ['razao', 'contato', 'logradouro', 'cidade', 'uf'];
+
 
     // Verifica se algum campo editável está vazio
     const hasEmptyFields = editableFields.some((field) => formData[field].trim() === '');
@@ -91,6 +98,11 @@ function AtualizarFornecedores({ idFornecedor, onClose, onAtualizacaoBemSucedida
       <Form.Group controlId="formBasicUF">
         <Form.Label>UF</Form.Label>
         <Form.Control type="text" placeholder="UF" name="uf" onChange={alteraCampos} autoComplete="uf" />
+      </Form.Group>
+
+      <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Selecione um arquivo</Form.Label>
+          <Form.Control type="file" name="avatar" onChange={handleFileChange} />
       </Form.Group>
 
       <Button variant="primary" type="submit">
