@@ -44,6 +44,24 @@ export default function ListaFornecedores() {
     setPerfilFornecedorId(null);
   }
 
+  function handleApagarClick(idFornecedor) {
+    // Chame o endpoint do servidor para deletar o fornecedor
+    axios.post(`http://localhost:3013/fornecedores_del/${idFornecedor}`)
+      .then(resposta => {
+        console.log(resposta);
+  
+        // Atualize a lista de fornecedores após a exclusão
+        setAtualizarFlag(flag => !flag);
+  
+        
+      })
+      .catch(error => {
+        console.error('Erro ao apagar fornecedor:', error);
+      });
+  }
+  
+
+
   return (
     <>
       <ListGroup>
@@ -57,7 +75,7 @@ export default function ListaFornecedores() {
               <Button variant="primary" size="sm" onClick={() => handlePerfilClick(e.id_fornecedor)}>Perfil</Button>{' '}
             </div>
             <div className="ms-2">
-              <Button variant="danger" size="sm">Apagar</Button>{' '}
+              <Button variant="danger" size="sm" onClick={() => handleApagarClick(e.id_fornecedor)}>Apagar</Button>{' '}
             </div>
             <div className="ms-2">
             <Button variant="warning" size="sm" onClick={() => handleAtualizarClick(e.id_fornecedor)}>Atualizar</Button>{' '}
